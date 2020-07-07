@@ -6,3 +6,6 @@ darknet
 *.JPEG
 *.mp4
 examples
+Labels
+YoloLabels
+Images

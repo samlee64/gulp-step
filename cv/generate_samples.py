@@ -8,7 +8,7 @@ while(cap.isOpened()):
     if ret == False:
         break
     if i % 100 == 0: # this is the line I added to make it only save one frame every 20
-        cv2.imwrite('data/input/samples/open-sea/'+str(i)+'.JPEG',frame)
+        cv2.imwrite('data/input/samples/open-sea/'+str(i)+'.jpg',frame)
     i+=1
 
 cap.release()

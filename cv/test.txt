@@ -1,0 +1,7 @@
+/Users/Lee/workspace/gulp-step/cv/label/Images/001/1500.jpg
+/Users/Lee/workspace/gulp-step/cv/label/Images/001/800.jpg
+/Users/Lee/workspace/gulp-step/cv/label/Images/001/5400.jpg
+/Users/Lee/workspace/gulp-step/cv/label/Images/001/300.jpg
+/Users/Lee/workspace/gulp-step/cv/label/Images/001/4100.jpg
+/Users/Lee/workspace/gulp-step/cv/label/Images/001/3800.jpg
+/Users/Lee/workspace/gulp-step/cv/label/Images/001/7100.jpg
