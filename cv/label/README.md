@@ -22,7 +22,7 @@ aws s3 cp s3://gulp-step/videos/<insert video name> .
 Generate images from your video to annotate. 
 Open up `generate_images.py` and modify line 4 with the name of your video.
 ```
-python generate_images.py
+python3 generate_samples.py
 ```
 
 Start to annotate images.
