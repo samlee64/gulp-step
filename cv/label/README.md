@@ -15,7 +15,7 @@ pip3 install Pillow
 
 # Run
 
-## Windows
+### Windows
   Download the your video.
   ```
   aws s3 cp s3://gulp-step/videos/<insert video name> .
@@ -31,13 +31,14 @@ pip3 install Pillow
   python3 main.py
   ```
 
-## Mac (bash)
+### Mac (bash)
   ```
   ./run.sh <insert video name>
   ```
   `run.sh` will download the video for you and start the annotating software
 
 
+## All Platforms
 Type '1' into the Load bar and press 'Load'. Try to make the bounding boxes as tight as possible around the fish/jellyfish/aquatic animal.
 
 
