@@ -36,4 +36,3 @@ Upload your annotations to S3 (cloud storage/Dropbox from programmers).
 ```
 aws s3 cp Labels/001/ s3://gulp-step/Labels/<insert video name>/ --recursive
 ```
-

@@ -2,6 +2,7 @@
 *.swp
 darkflow
 darknet
+data
 *.jpg
 *.JPEG
 *.mp4
@@ -9,3 +10,4 @@ examples
 Labels
 YoloLabels
 Images
+__pycache__
