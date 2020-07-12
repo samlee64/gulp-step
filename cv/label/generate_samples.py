@@ -1,7 +1,12 @@
 import cv2
+import sys
 
-# Opens the Video file
-cap= cv2.VideoCapture('open-sea-capture1.mkv')
+try:
+    videofileName = sys.argv[1]
+except:
+    print("Need to provide videofile name as an argument")
+
+cap= cv2.VideoCapture(videofileName)
 i=0
 while(cap.isOpened()):
     ret, frame = cap.read()
