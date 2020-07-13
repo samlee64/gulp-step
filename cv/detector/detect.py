@@ -3,10 +3,10 @@ sys.path.append(os.path.join(os.getcwd(),'../../../darknet/'))
 print(os.path.join(os.getcwd(),'../../../darknet/'))
 
 import darknet
-import pickle
 import math
 import cv2
 import time
+import sys
 from itertools import combinations
 
 netMain = None
@@ -25,7 +25,14 @@ def centerToRectangleCoords(x, y, w, h):
     ymax = int(round(y + (h / 2)))
     return xmin, ymin, xmax, ymax
 
-def writeDetections(resultsFile, detections):
+
+def write_detections(results_file, detections):
+    """
+    1 line per frame
+    <num of detections> detections
+    detection is <top-left x> <top-left y> <bottom-right x> <bottom-left y>
+    """
+    results_file.write(str(len(detections)))
     frameDetections = []
     for detection in detections:
         name_tag = str(detection[0].decode())
@@ -36,11 +43,13 @@ def writeDetections(resultsFile, detections):
                         detection[2][3]
             xmin, ymin, xmax, ymax = centerToRectangleCoords(float(x), float(y), float(w), float(h))
             frameDetections.append([xmin, ymin, xmax, ymax])
-    pickle.dump(frameDetections, resultsFile)
+            results_file.write(" " + str(xmin) + " " + str(ymin) + " " + str(xmax) + " " + str(ymax))
+
+    results_file.write("\n")
 
 
 
-def drawBoundingBoxes(detections, img):
+def draw_bounding_boxes(detections, img):
     if len(detections) > 0:
         for detection in detections:
             detectedClass = str(detection[0].decode())
@@ -65,8 +74,12 @@ def drawBoundingBoxes(detections, img):
 def YOLO():
     global metaMain, netMain, altNames
 
-    configPath = "obj.cfg"
-    weightPath = "obj_3000.weights"
+    try:
+        weightPath = sys.argv[1]
+    except:
+        print("Need to provide weights file")
+        sys.exit()
+    configPath = "jellyfish.cfg"
     metaPath = "obj.data"
 
     if not os.path.exists(configPath):
@@ -84,11 +97,9 @@ def YOLO():
     if metaMain is None:
         metaMain = darknet.load_meta(metaPath.encode("ascii"))
 
-    print("got all files")
+    results_file = open("results.txt", "w")
 
-    resultsFile = open("results", "wb")
-
-    capture = cv2.VideoCapture("./jellyfish-capture1.mkv")
+    capture = cv2.VideoCapture("./jellyfish-capture3.mkv")
 
     frame_width = int(capture.get(3))
     frame_height = int(capture.get(4))
@@ -120,11 +131,11 @@ def YOLO():
 
         detections = darknet.detect_image(netMain, metaMain, darknet_image, thresh=0.25)
 
-        writeDetections(resultsFile, detections)
+        write_detections(results_file, detections)
 
-        image = drawBoundingBoxes(detections, frame_resized)
+        image = draw_bounding_boxes(detections, frame_resized)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        print(1/(time.time()-prev_time))
+    #    print(1/(time.time()-prev_time))
         cv2.imshow('Demo', image)
         cv2.waitKey(3)
         output.write(image)
