@@ -1,0 +1,47 @@
+{
+  "name": "glub-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "cp config.sample.json config.json",
+    "build": "rm -rf lib && npm run transpile",
+    "transpile": "tsc",
+    "bic": "build-if-changed",
+    "watch": "nodemon",
+    "start": "node lib/api/main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-json": "^2.0.2",
+    "koa-router": "^9.1.0"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.32",
+    "@types/koa": "^2.11.3",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa-json": "^2.0.18",
+    "@types/koa-router": "^7.4.1",
+    "@types/koa__cors": "^3.0.1",
+    "@types/node": "^14.0.27",
+    "build-if-changed": "^1.5.5",
+    "nodemon": "^2.0.4",
+    "tslint": "^6.1.3",
+    "typescript": "^3.9.7"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "npm run bic && npm run start",
+    "ext": "ts"
+  }
+}

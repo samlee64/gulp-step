@@ -11,3 +11,8 @@ Labels
 YoloLabels
 Images
 __pycache__
+node_modules
+config.json
+server/lib
+server/package-lock.json
+server/.bic_cache
