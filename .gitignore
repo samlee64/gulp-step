@@ -16,3 +16,6 @@ config.json
 server/lib
 server/package-lock.json
 server/.bic_cache
+*.weights
+ui/.cache
+ui/dist
