@@ -15,6 +15,23 @@ def format_detections(line):
 
     return detections
 
+def format_trackings(line):
+    num_trackings = line[0]
+    trackings = []
+
+    idx = 1
+
+    while idx < len(line):
+        tracking_id, xcenter, ycenter, width, height = line[idx], line[idx+1], line[idx+2], line[idx+3], line[idx+4]
+
+        trackings.append([tracking_id, xcenter, ycenter, width, height])
+        idx+=5
+
+    if len(trackings) != num_trackings:
+        print("number of trackings does not match detected trackings")
+
+    return trackings
+
 
 def draw_bounding_boxes(line, img):
     formatted_detections = format_detections(line)
@@ -26,6 +43,26 @@ def draw_bounding_boxes(line, img):
             cv2.rectangle(img, (xmin, ymin), (xmax, ymax), (0, 255, 0), 2)
 
     return img
+
+def draw_tracking_bb(line, img):
+    trackings = format_trackings(line)
+
+    for tracking in trackings:
+        if len(trackings) > 0:
+            [tracking_id, xcenter, ycenter, width, height] = tracking
+
+            xmin = int(xcenter - (width/2))
+            ymin = int(ycenter - (height/2))
+
+            xmax = int(xmin + width)
+            ymax = int(ymin + height)
+
+            print(xmin, ymin, xmax, ymax)
+
+            cv2.rectangle(img, (xmin, ymin),  (xmax, ymax), (0, 255, 0), 2)
+
+    return img
+
 
 def redraw():
     fp = open("jellyfish-capture3-results.txt", "r")
@@ -56,8 +93,34 @@ def redraw():
     fp.close()
     print("Done")
 
+def redraw_trackings():
+    fp = open("results.txt", "r")
 
+    capture = cv2.VideoCapture("./data/videos/moon-jellyfish-capture4.mkv")
+    frame_width = int(capture.get(3))
+    frame_height = int(capture.get(4))
+
+    while True:
+        ret, frame_read = capture.read()
+        line = fp.readline()
+        got_line = [int(x) for x in line.split()]
+        if not ret:
+            break
+
+        frame_rgb = cv2.cvtColor(frame_read, cv2.COLOR_BGR2RGB)
+        frame_resized = cv2.resize(frame_rgb,
+                                   (frame_width, frame_height),
+                                   interpolation=cv2.INTER_LINEAR)
+
+        image = draw_tracking_bb(got_line, frame_resized)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+        cv2.imshow('Demo', image)
+        cv2.waitKey(3)
+    fp.close()
+    print("Done")
 
 
 if __name__ == "__main__":
-    redraw()
+    #redraw()
+    redraw_trackings()

@@ -6,6 +6,8 @@ data
 *.jpg
 *.JPEG
 *.mp4
+*.avi
+*.mkv
 examples
 Labels
 YoloLabels
