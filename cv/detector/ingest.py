@@ -20,12 +20,13 @@ def format_trackings(line):
     trackings = []
 
     idx = 1
-
     while idx < len(line):
         tracking_id, xcenter, ycenter, width, height = line[idx], line[idx+1], line[idx+2], line[idx+3], line[idx+4]
 
-        trackings.append([tracking_id, xcenter, ycenter, width, height])
-        idx+=5
+        x_velocity, y_velocity, is_expanding = line[idx + 5], line[idx + 6], line[idx + 7]
+
+        trackings.append([tracking_id, xcenter, ycenter, width, height, x_velocity, y_velocity, is_expanding])
+        idx+=8
 
     if len(trackings) != num_trackings:
         print("number of trackings does not match detected trackings")
@@ -49,15 +50,14 @@ def draw_tracking_bb(line, img):
 
     for tracking in trackings:
         if len(trackings) > 0:
-            [tracking_id, xcenter, ycenter, width, height] = tracking
+
+            tracking_id, xcenter, ycenter, width, height = tracking[0], tracking[1], tracking[2], tracking[3], tracking[4]
 
             xmin = int(xcenter - (width/2))
             ymin = int(ycenter - (height/2))
 
             xmax = int(xmin + width)
             ymax = int(ymin + height)
-
-            print(xmin, ymin, xmax, ymax)
 
             cv2.rectangle(img, (xmin, ymin),  (xmax, ymax), (0, 255, 0), 2)
 

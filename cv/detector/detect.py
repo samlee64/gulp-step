@@ -92,7 +92,7 @@ def write_trackers(results_file, trackers):
     """
     1 line per frame
     format is: <num of tracked objs> trackers
-    tracker is <tracker_id> <x center> <y center> <width> <height> <area>
+    tracker is <tracker_id> <x center> <y center> <width> <height> <x_velocity> <y_velocity> <is_expanding>
     """
     results_file.write(str(len(trackers)))
 
@@ -109,9 +109,10 @@ def write_trackers(results_file, trackers):
             xcenter = int(xmin + (width/2))
             ycenter = int(ymin + (height/2))
 
-            velocity = calculate_tracker_velocity(tracking_id, xcenter, ycenter)
+            (x_velocity, y_velocity) = calculate_tracker_velocity(tracking_id, xcenter, ycenter)
+            is_expanding = calculate_expansion(tracking_id, width, height)
 
-            results_file.write(" " + str(tracking_id) + " " + str(xcenter) + " " + str(ycenter) + " " + str(width) + " " + str(height))
+            results_file.write(" " + str(tracking_id) + " " + str(xcenter) + " " + str(ycenter) + " " + str(width) + " " + str(height) + " " + str(x_velocity) + " " + str(y_velocity) + " " + str(is_expanding))
 
 
         results_file.write("\n")
@@ -127,31 +128,46 @@ def write_trackers(results_file, trackers):
 
 #Going to be pixels per frame
 #Should be pixels per sec but laz
-dict = {}
+velocity_dict = {}
 def calculate_tracker_velocity(tracking_id, xcenter, ycenter):
-    if dict.get(tracking_id):
-        (prev_xcenter, prev_ycenter) = dict.get(tracking_id)
+    if velocity_dict.get(tracking_id):
+        (prev_xcenter, prev_ycenter) = velocity_dict.get(tracking_id)
 
         x_traveled = xcenter - prev_xcenter
         y_traveled = ycenter - prev_ycenter
 
-        dict[tracking_id] = (xcenter, ycenter)
+        velocity_dict[tracking_id] = (xcenter, ycenter)
 
         return (x_traveled, y_traveled)
 
 
     else:
-        dict[tracking_id] = (xcenter, ycenter)
+        velocity_dict[tracking_id] = (xcenter, ycenter)
         return (0, 0)
 
+expansion_dict = {}
+def calculate_expansion(tracking_id, width, height):
+    """
+    0 if shrinking
+    1 if expanding
+    """
+    if expansion_dict.get(tracking_id):
+        (prev_width, prev_height) = expansion_dict.get(tracking_id)
+        expansion_dict[tracking_id] = (width, height)
 
+        width_diff = width - prev_width
+        height_diff = height - prev_height
 
+        #I should just take the more extreme of the two
+        bigger_diff = width_diff if abs(width_diff) > abs(height_diff) else height_diff
 
-
-
-
-
-
+        if bigger_diff < 0:
+            return 0
+        else:
+            return 1
+    else:
+        expansion_dict[tracking_id] = (width, height)
+        return 0
 
 def draw_bounding_boxes(detections, img):
     if len(detections) > 0:
