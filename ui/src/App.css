@@ -1,0 +1,183 @@
+:root {
+  --blur: blur(20px);
+  --blue: #3A62C9;
+  --blue-transparent: rgba(58, 99, 201, 0.5);
+  --salmon: #B3564A;
+  --hover: 0.2s ease;
+}
+
+html,
+html * {
+  font-family: Trebuchet MS;
+}
+
+html {
+  font-size: 0.8vw;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  color: white;
+}
+
+#main {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  /* overflow: hidden; */
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 4rem;
+  line-height: 4.625rem;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 3rem;
+  line-height: 3.5rem;
+}
+
+p {
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+}
+
+button {
+  color: white;
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1.125rem;
+  line-height: 1.31rem;
+  outline: none;
+  padding: 0;
+  height: min-content;
+  /* width: min-content; */
+}
+
+.button {
+  /* border: 2px solid var(--blue); */
+  /* border: solid 2px transparent; */
+  box-shadow: inset 0px 0px 0px 2px var(--blue);
+  box-sizing: border-box;
+  border-radius: 2rem;
+  padding: 0.5rem 1.5rem 0.55rem;
+  position: relative;
+  background: transparent;
+  transition: var(--hover);
+  /* background-clip: padding-box;
+  border-image-source: linear-gradient(to bottom right, rgb(10, 21, 163), var(--blue));
+  border-image-slice: 1; */
+
+  /* padding: 5px 10px;
+  border: 1px solid transparent;
+  border-radius: 80px;
+  background-image: linear-gradient(180deg, #c82517 0%, #971000 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box; */
+
+  /* border: solid .125em;
+  border-image: linear-gradient(#be4c39, rgba(#be4c39, 0) 80%) 1;
+  padding: .125em;
+  background: linear-gradient(#be4c39, rgba(#be4c39, 0) 80%) content-box; */
+}
+
+/* .blue-button::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: -1;
+  margin: -2px;
+  border-radius: inherit;
+  background: linear-gradient(to bottom right, rgb(10, 21, 163), var(--blue));
+} */
+
+.button:hover {
+  /* border: 2px solid var(--blue-transparent); */
+  box-shadow: inset 0px 0px 0px 2px var(--blue-transparent);
+  /* opacity: 1; */
+  /* background */
+  transition: var(--hover);
+}
+
+.button-fill {
+  background: var(--blue);
+  border: none;
+  box-shadow: none;
+  transition: var(--hover);
+  /* background: linear-gradient(to bottom right, rgb(20, 31, 182), var(--blue)); */
+  /* border: transparent; */
+  /* border: 2px solid var(--blue); */
+}
+
+.button-fill:hover {
+  background: var(--blue-transparent);
+  box-shadow: none;
+  transition: var(--hover);
+  /* border: 2px solid var(--blue-transparent); */
+}
+
+.icon-button {
+  transition: var(--hover);
+}
+
+.icon-button:hover {
+  opacity: 0.5;
+  transition: var(--hover);
+}
+
+/* a:hover,
+button:hover {
+  opacity: 0.5;
+} */
+
+.hidden {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden;
+  opacity: 0;
+  /* transition: opacity var(--hover), visibility 0s; */
+}
+
+#video-bg {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+  /* background-image: url(./jelly.png); */
+  transition: var(--hover);
+}
+
+.moon-bg {
+  background-image: url(./jelly.png) !important;
+}
+
+.opensea-bg {
+  background-image: url(./opensea.png) !important;
+}
+
+.coralreef-bg {
+  background-image: url(./reef.png) !important;
+}
+
+.modal-text {
+  width: calc(min(900px, 80vw));
+  margin: 50px 60px 0 60px
+}
+
+.modal-text h1 {
+  margin: 0 0 2.5rem 0;
+}
+
+.modal-text p {
+  width: 67%;
+  margin: 0 0 2.5rem 0;
+}
