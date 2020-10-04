@@ -1,7 +1,7 @@
 import React from "react";
 // import { connect } from 'react-redux'
 import { store } from '../index'
-import { changeToView } from '../actions'
+import { changeToView, toggleMute } from '../actions'
 import '../SplashModal.css';
 
 type Props = {};
@@ -26,17 +26,16 @@ class SplashModal extends React.Component<Props, State> {
     // this.props.changeToView(this.state.input)
 
     store.dispatch(changeToView('Main')) // change store's view value to 'Main'
+    store.dispatch(toggleMute()) // unmute video
+    // TODO: start music composition, unless music started on mount
 
     // const visibility = 
     // this.setState({ visible: visibility })
   }
 
   render() {
-    // if (this.state.visible) {
     return (
-      <div id="splash-modal" className={this.state.visible ? '' : 'invisible'}
-      // className="hidden"
-      >
+      <div id="splash-modal" className={this.state.visible ? '' : 'invisible'}>
         <div className="modal-text">
           <div id="splash-logo" className="logo">GlubStep</div>
           <h1>Generative music powered by machine learning and marine life</h1>
@@ -46,8 +45,6 @@ class SplashModal extends React.Component<Props, State> {
       </div>
     )
   }
-  //   return null
-  // }
 }
 
 // export default connect(

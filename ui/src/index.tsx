@@ -2,10 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import visibilityFilter from './reducers'
+import reducer from './reducers'
 import App from './App'
 
-export const store = createStore(visibilityFilter)
+export const store = createStore(reducer)
 
 ReactDOM.render(
   // <React.StrictMode>

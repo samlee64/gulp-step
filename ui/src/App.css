@@ -1,9 +1,9 @@
 :root {
-  --blur: blur(20px);
-  --blue: #3A62C9;
-  --blue-transparent: rgba(58, 99, 201, 0.5);
+  --blur: blur(15px);
+  --blue: rgb(79, 120, 224);
+  --blue-transparent: rgba(79, 120, 224, 0.5);
   --salmon: #B3564A;
-  --hover: 0.2s ease;
+  --hover: 0.15s ease;
 }
 
 html,
@@ -12,7 +12,8 @@ html * {
 }
 
 html {
-  font-size: 0.8vw;
+  /* font-size: 0.8vw; */
+  font-size: 14px;
 }
 
 body {
@@ -44,7 +45,7 @@ h2 {
 p {
   font-weight: normal;
   font-size: 1.5rem;
-  line-height: 1.75rem;
+  line-height: 2rem;
 }
 
 button {
@@ -146,7 +147,7 @@ button:hover {
   /* transition: opacity var(--hover), visibility 0s; */
 }
 
-#video-bg {
+.video-bg {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
@@ -154,30 +155,31 @@ button:hover {
   background-position: center;
   /* background-image: url(./jelly.png); */
   transition: var(--hover);
+  z-index: -100;
 }
 
 .moon-bg {
-  background-image: url(./jelly.png) !important;
+  background-image: url(./jelly.jpg) !important;
 }
 
 .opensea-bg {
-  background-image: url(./opensea.png) !important;
+  background-image: url(./opensea.jpg) !important;
 }
 
 .coralreef-bg {
-  background-image: url(./reef.png) !important;
+  background-image: url(./reef.jpg) !important;
 }
 
-.modal-text {
+/* .modal-text {
   width: calc(min(900px, 80vw));
   margin: 50px 60px 0 60px
-}
+} */
 
-.modal-text h1 {
+/* .modal-text h1 {
   margin: 0 0 2.5rem 0;
-}
+} */
 
-.modal-text p {
+/* .modal-text p {
   width: 67%;
   margin: 0 0 2.5rem 0;
-}
+} */
