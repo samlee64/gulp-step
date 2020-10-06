@@ -1,5 +1,4 @@
 import React from "react";
-// import { connect } from 'react-redux'
 import { store } from '../index'
 import { toggleInfo } from '../actions'
 import '../InfoModal.css';
@@ -28,7 +27,6 @@ class InfoModal extends React.Component<Props, State> {
   }
 
   render() {
-    // if(this.state.visible) {
     return (
       <>
         <div id="info-modal"
@@ -46,8 +44,6 @@ class InfoModal extends React.Component<Props, State> {
         </div>
       </>
     )
-    // }
-    // return null
   }
 }
 

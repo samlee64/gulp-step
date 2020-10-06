@@ -5,7 +5,7 @@ const initialState = {
     // scene: { name: 'MoonJellies', link: './jelly.mp4' },
     scene: 'MoonJellies',
     infoShown: false,
-    playing: true,
+    // playing: true,
     // storedVolume: 1,
     muted: true
 }
@@ -24,10 +24,10 @@ function reducer(state = initialState, action) {
             return Object.assign({}, state, {
                 infoShown: !state.infoShown
             })
-        case TOGGLE_PLAY:
-            return Object.assign({}, state, {
-                playing: !state.playing
-            })
+        // case TOGGLE_PLAY:
+        //     return Object.assign({}, state, {
+        //         playing: !state.playing
+        //     })
         // case CHANGE_VOLUME:
         //     console.log('volume changed to', action.val)
         //     return Object.assign({}, state, {

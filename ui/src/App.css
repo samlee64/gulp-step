@@ -3,7 +3,7 @@
   --blue: rgb(79, 120, 224);
   --blue-transparent: rgba(79, 120, 224, 0.5);
   --salmon: #B3564A;
-  --hover: 0.15s ease;
+  --hover: 0.2s ease;
 }
 
 html,
@@ -14,6 +14,7 @@ html * {
 html {
   /* font-size: 0.8vw; */
   font-size: 14px;
+  background: black;
 }
 
 body {
@@ -147,18 +148,30 @@ button:hover {
   /* transition: opacity var(--hover), visibility 0s; */
 }
 
+.transparent  {
+  opacity: 0;
+  transition: opacity var(--hover);
+}
+
+/* .visible {
+  opacity: 1;
+  transition: opacity var(--hover);
+} */
+
 .video-bg {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  background-size: cover;
-  background-position: center;
+  object-position: center;
+  border-bottom: 1px solid transparent;  
+  /* background-size: cover; */
+  /* background-position: center; */
   /* background-image: url(./jelly.png); */
   transition: var(--hover);
   z-index: -100;
 }
 
-.moon-bg {
+/* .moon-bg {
   background-image: url(./jelly.jpg) !important;
 }
 
@@ -168,12 +181,12 @@ button:hover {
 
 .coralreef-bg {
   background-image: url(./reef.jpg) !important;
-}
-
-/* .modal-text {
-  width: calc(min(900px, 80vw));
-  margin: 50px 60px 0 60px
 } */
+
+.modal-text {
+  width: calc(min(750px, 80vw));
+  margin: 50px 60px 0 60px
+}
 
 /* .modal-text h1 {
   margin: 0 0 2.5rem 0;

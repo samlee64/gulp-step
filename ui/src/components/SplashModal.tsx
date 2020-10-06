@@ -23,14 +23,9 @@ class SplashModal extends React.Component<Props, State> {
   }
 
   enterMain = () => {
-    // this.props.changeToView(this.state.input)
-
     store.dispatch(changeToView('Main')) // change store's view value to 'Main'
     store.dispatch(toggleMute()) // unmute video
     // TODO: start music composition, unless music started on mount
-
-    // const visibility = 
-    // this.setState({ visible: visibility })
   }
 
   render() {

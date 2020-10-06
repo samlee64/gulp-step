@@ -6,14 +6,22 @@ import Menu from './components/Menu';
 import InfoModal from './components/InfoModal';
 import { store } from './index';
 import { toggleInfo } from './actions';
-const jellyVid = require('./jelly.mp4');
+const jellyVid = require('./assets/jelly.mp4');
+const openSeaVid = require('./assets/opensea.mp4');
+const reefVid = require('./assets/reef.mp4');
+
+const bgDict: { [key: string]: any } = {
+  'MoonJellies': jellyVid,
+  'OpenSea': openSeaVid,
+  'CoralReef': reefVid
+}
 
 type Props = {};
 
 type State = {
   video: {
     name: string,
-    link: string
+    src: any
   },
   muted: boolean
   // playing: boolean
@@ -27,19 +35,13 @@ class App extends React.Component<Props, State> {
     this.state = {
       video: {
         name: 'MoonJellies',
-        link: './jelly.mp4'
+        src: jellyVid
       },
       muted: true
       // playing: true
     };
 
     this.vidRef = React.createRef();
-
-    const backgrounds: { [key: string]: string } = {
-      'MoonJellies': './jelly.jpg',
-      'OpenSea': './opensea.jpg',
-      'CoralReef': './reef.jpg'
-    }
 
     store.subscribe(() => {
       // let selectedScene = store.getState().scene
@@ -50,11 +52,13 @@ class App extends React.Component<Props, State> {
       this.setState({
         video: {
           name: sceneName,
-          link: backgrounds[sceneName] // try map
+          src: bgDict[sceneName] // try map
         },
         muted: store.getState().muted
         // playing: store.getState().playing
-      })
+      });
+
+      console.log(this.state.video.src);
     })
   }
 
@@ -67,37 +71,68 @@ class App extends React.Component<Props, State> {
 
   playVideo = () => {
     if (this.vidRef.current != null) this.vidRef.current.play();
+    // TODO: tell music to generate
   }
 
   pauseVideo = () => {
     if (this.vidRef.current != null) this.vidRef.current.pause();
+    // TODO: tell music to pause generating
   }
 
   adjVolume = (val: number) => {
     if (this.vidRef.current != null) this.vidRef.current.volume = val;
   }
 
-  render() {
-    // if (this.state.video.name === 'MoonJellies') {
-    // var vid =
-    //   <video className="video-bg" autoPlay controls muted={this.state.muted} loop onClick={this.exitInfo}>
-    //     <source type="video/mp4" src={jellyVid}></source>
-    //   </video>
-    // } else {
-    //   var vid = <div className="video-bg" style={{ backgroundImage: `url(${this.state.video.link})` }} onClick={this.exitInfo}></div>
-    // }
+  // lookupVid = (vid: string) => {
+  //   switch (vid) {
+  //     // case 'MoonJellies':
+  //     //   return Object.assign({}, state, {
+  //     //     view: action.view
+  //     //   })
+  //     case 'MoonJellies':
+  //       return jellyVid
+  //     case 'OpenSea':
+  //       return openSeaVid
+  //     case 'CoralReef':
+  //       return reefVid
+  //     default:
+  //       return jellyVid
+  //   }
+  //   // if (vid === 'MoonJellies') {
+  //   //   return jellyVid
+  //   // }
+  //   // else if (vid === 'OpenSea') {
+  //   //   return openSeaVid
+  //   // }
+  //   // else if (vid === 'CoralReef') {
+  //   //   return reefVid
+  //   // }
+  // }
 
+  render() {
     return (
       <>
         <SplashModal />
-        <Menu playCb={this.playVideo.bind(this)} pauseCb={this.pauseVideo.bind(this)} volumeCb={this.adjVolume.bind(this)} />
+        <Menu
+          playCb={this.playVideo.bind(this)}
+          pauseCb={this.pauseVideo.bind(this)}
+          volumeCb={this.adjVolume.bind(this)}
+        />
         <InfoModal />
         {/* <div id="video-bg" className={backgroundClass}
           // style={{ backgroundImage: 'url(' + this.state.video + ')' }}
           onClick={this.exitInfo}></div> */}
         {/* {vid} */}
-        <video ref={this.vidRef} className="video-bg" autoPlay loop muted={this.state.muted} onClick={this.exitInfo}>
-          <source type="video/mp4" src={jellyVid}></source>
+        <video
+          ref={this.vidRef}
+          className="video-bg"
+          autoPlay
+          preload="auto"
+          loop
+          muted={this.state.muted}
+          src={this.state.video.src}
+          onClick={this.exitInfo}>
+          {/* <source type="video/mp4" src={this.lookupVid(this.state.video.name)}></source> */}
         </video>
       </>
     )

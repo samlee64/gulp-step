@@ -23,11 +23,6 @@
   margin: 0 0 2.5rem 0;
 }
 
-#splash-modal  .modal-text{
-  width: calc(min(750px, 80vw));
-  margin: 50px 60px 0 60px
-}
-
 #splash-logo {
   position: absolute;
   top: 1rem;

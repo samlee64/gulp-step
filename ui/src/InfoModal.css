@@ -9,6 +9,7 @@
   overflow-y: scroll;
   height: 80vh;
   transition: opacity var(--hover);
+  z-index: 1;
 }
 
 #modal-x {
@@ -21,8 +22,8 @@
   width: 50%;
   height: 200px;
   /* object-fit: contain; */
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: left;
-  background-image: url(../public/jelly.jpg);
+  background-image: url(./assets/jelly.jpg);
 }
