@@ -15,6 +15,7 @@ html {
   /* font-size: 0.8vw; */
   font-size: 14px;
   background: black;
+  /* overflow: hidden; */
 }
 
 body {
@@ -47,6 +48,15 @@ p {
   font-weight: normal;
   font-size: 1.5rem;
   line-height: 2rem;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 2.25rem;
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+  z-index: 1000;
 }
 
 button {
@@ -109,6 +119,7 @@ button {
 
 .button-fill {
   background: var(--blue);
+  /* background: linear-gradient(to right, var(--blue), turquoise); */
   border: none;
   box-shadow: none;
   transition: var(--hover);
@@ -140,6 +151,8 @@ button:hover {
 
 .hidden {
   display: none !important;
+  opacity: 0;
+  transition: opacity 2s ease;
 }
 
 .invisible {
@@ -183,10 +196,10 @@ button:hover {
   background-image: url(./reef.jpg) !important;
 } */
 
-.modal-text {
+/* .modal-text {
   width: calc(min(750px, 80vw));
   margin: 50px 60px 0 60px
-}
+} */
 
 /* .modal-text h1 {
   margin: 0 0 2.5rem 0;
@@ -196,3 +209,7 @@ button:hover {
   width: 67%;
   margin: 0 0 2.5rem 0;
 } */
+
+.shadow {
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+}

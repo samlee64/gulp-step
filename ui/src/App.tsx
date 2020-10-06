@@ -58,7 +58,7 @@ class App extends React.Component<Props, State> {
         // playing: store.getState().playing
       });
 
-      console.log(this.state.video.src);
+      // console.log(this.state.video.src);
     })
   }
 
@@ -112,6 +112,7 @@ class App extends React.Component<Props, State> {
   render() {
     return (
       <>
+        <div className="logo">GlubStep</div>
         <SplashModal />
         <Menu
           playCb={this.playVideo.bind(this)}

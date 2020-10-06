@@ -29,7 +29,7 @@ class Menu extends React.Component<Props, State> {
     this.state = {
       visible: false,
       playing: true,
-      setVolume: 1,
+      setVolume: 0.66,
       muted: true,
       showSlider: false
     }
@@ -41,7 +41,7 @@ class Menu extends React.Component<Props, State> {
         visible: store.getState().view === 'Main',
         // playing: store.getState().playing,
         // storedVolume: store.getState().storedVolume,
-        muted: store.getState().muted
+        muted: store.getState().muted,
       })
     })
   }
@@ -125,38 +125,38 @@ class Menu extends React.Component<Props, State> {
       </svg>
 
     return (
-      <div id="menu-bar" className={this.state.visible ? '' : 'invisible'}>
-        <div id="menu-logo" className="logo">GlubStep</div>
+      // <div id="menu-layer" className={this.state.visible ? '' : 'invisible'}>
+      //   <div className="logo">GlubStep</div>
+      <div id="menu-bar" className={this.state.visible ? '' : 'hidden'}>
+        <div id="controls">
+          <button id="play-button" className="icon-button" onClick={this.handlePlay}>
+            {this.state.playing ? pauseIcon : playIcon}
+          </button>
+          {/* <div id="volume-placeholder"> */}
+          <div id="volume-wrapper" onMouseEnter={this.handleSlider} onMouseLeave={this.handleSlider}>
+            <button id="mute-button" className="icon-button" onClick={this.handleMute}>
+              {(this.state.muted || this.state.setVolume == 0) ? mutedIcon : unmutedIcon}
+            </button>
+            <input ref={this.sliderRef} id="volume-slider" name="volume-slider" type="range" min="0" max="1" defaultValue={this.state.setVolume} step="0.01"
+              className={`${this.state.showSlider ? '' : 'transparent'}`}
+              onChange={this.handleVolume}
+            ></input>
+          </div>
+          {/* </div> */}
+        </div>
         <div id="scene-buttons">
           <button className="button button-fill" onClick={this.handleScene('MoonJellies')}>moon jellies</button>
           <button className="button" onClick={this.handleScene('OpenSea')}>open sea</button>
           <button className="button" onClick={this.handleScene('CoralReef')}>coral reef</button>
         </div>
-        <div id="controls">
-          {/* <div>{playButton}</div> */}
-          <button id="play-button" className="icon-button" onClick={this.handlePlay}>
-            {this.state.playing ? pauseIcon : playIcon}
-          </button>
-          <div id="volume-placeholder">
-            {/* <div>{soundButton}</div> */}
-            <div id="volume-wrapper" onMouseEnter={this.handleSlider} onMouseLeave={this.handleSlider}>
-              <button id="mute-button" className="icon-button" onClick={this.handleMute}>
-                {(this.state.muted || this.state.setVolume == 0) ? mutedIcon : unmutedIcon}
-              </button>
-              <input ref={this.sliderRef} id="volume-slider" name="volume-slider" type="range" min="0" max="1" defaultValue="1" step="0.01"
-                className={`${this.state.showSlider ? '' : 'transparent'}`}
-                onChange={this.handleVolume}
-              ></input>
-            </div>
-          </div>
-          <button id="info" className="icon-button" onClick={this.handleInfo}>
-            <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="17.4018" cy="16.5982" r="15.0982" stroke="white" strokeWidth="3" />
-              <path d="M17.3705 7.69543C17.8392 7.69543 18.2377 7.8634 18.5658 8.19934C18.9017 8.52747 19.0697 8.9259 19.0697 9.39465C19.0697 9.8634 18.9017 10.2657 18.5658 10.6017C18.2377 10.9298 17.8392 11.0939 17.3705 11.0939C16.9017 11.0939 16.4994 10.9298 16.1635 10.6017C15.8353 10.2657 15.6713 9.8634 15.6713 9.39465C15.6713 8.9259 15.8353 8.52747 16.1635 8.19934C16.4994 7.8634 16.9017 7.69543 17.3705 7.69543ZM15.8588 25.1095V14.9611H14.2533V12.5587H18.8236V25.1095H15.8588Z" fill="white" />
-            </svg>
-          </button>
-        </div>
+        <button id="info" className="icon-button" onClick={this.handleInfo}>
+          <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="17.4018" cy="16.5982" r="15.0982" stroke="white" strokeWidth="3" />
+            <path d="M17.3705 7.69543C17.8392 7.69543 18.2377 7.8634 18.5658 8.19934C18.9017 8.52747 19.0697 8.9259 19.0697 9.39465C19.0697 9.8634 18.9017 10.2657 18.5658 10.6017C18.2377 10.9298 17.8392 11.0939 17.3705 11.0939C16.9017 11.0939 16.4994 10.9298 16.1635 10.6017C15.8353 10.2657 15.6713 9.8634 15.6713 9.39465C15.6713 8.9259 15.8353 8.52747 16.1635 8.19934C16.4994 7.8634 16.9017 7.69543 17.3705 7.69543ZM15.8588 25.1095V14.9611H14.2533V12.5587H18.8236V25.1095H15.8588Z" fill="white" />
+          </svg>
+        </button>
       </div >
+      // </div >
     )
   }
 }
