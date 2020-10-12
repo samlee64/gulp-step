@@ -1,14 +1,17 @@
 :root {
   --blur: blur(15px);
   --blue: rgb(79, 120, 224);
-  --blue-transparent: rgba(79, 120, 224, 0.5);
+  --blue-transparent: rgba(79, 120, 224, var(--transparent));
+  --turquoise: rgb(49, 197, 182);
+  --turquoise-transparent: rgba(49, 197, 182, var(--transparent));
   --salmon: #B3564A;
+  --transparent: 0.7;
   --hover: 0.2s ease;
 }
 
 html,
 html * {
-  font-family: Trebuchet MS;
+  font-family: 'Manrope', sans-serif;
 }
 
 html {
@@ -33,25 +36,29 @@ body {
 }
 
 h1 {
-  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
   font-size: 4rem;
   line-height: 4.625rem;
 }
 
 h2 {
-  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
   font-size: 3rem;
   line-height: 3.5rem;
+  margin-bottom: 2rem;
 }
 
 p {
   font-weight: normal;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   line-height: 2rem;
 }
 
 .logo {
-  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
   font-size: 2.25rem;
   position: absolute;
   top: 1rem;
@@ -63,8 +70,8 @@ button {
   color: white;
   background: none;
   border: none;
-  font-weight: bold;
-  font-size: 1.125rem;
+  font-weight: 500;
+  font-size: 1rem;
   line-height: 1.31rem;
   outline: none;
   padding: 0;
@@ -112,26 +119,29 @@ button {
 .button:hover {
   /* border: 2px solid var(--blue-transparent); */
   box-shadow: inset 0px 0px 0px 2px var(--blue-transparent);
-  /* opacity: 1; */
+  opacity: var(--transparent);
   /* background */
-  transition: var(--hover);
+  transition: all var(--hover);
 }
 
 .button-fill {
-  background: var(--blue);
-  /* background: linear-gradient(to right, var(--blue), turquoise); */
+  /* background: var(--blue); */
+  background: linear-gradient(to bottom right, var(--blue) 40%, var(--turquoise) 100%);
   border: none;
   box-shadow: none;
-  transition: var(--hover);
+  transition: opacity var(--hover);
+  opacity: 1;
   /* background: linear-gradient(to bottom right, rgb(20, 31, 182), var(--blue)); */
   /* border: transparent; */
   /* border: 2px solid var(--blue); */
 }
 
 .button-fill:hover {
-  background: var(--blue-transparent);
+  /* background: var(--blue-transparent); */
+  /* background: linear-gradient(to bottom right, var(--blue-transparent) 40%, rgba(64, 224, 208, 0.5) 100%); */
   box-shadow: none;
-  transition: var(--hover);
+  transition: opacity var(--hover);
+  opacity: var(--transparent);
   /* border: 2px solid var(--blue-transparent); */
 }
 
@@ -139,8 +149,8 @@ button {
   transition: var(--hover);
 }
 
-.icon-button:hover {
-  opacity: 0.5;
+.icon-button:not(.hidden):hover {
+  opacity: var(--transparent);
   transition: var(--hover);
 }
 
@@ -150,9 +160,9 @@ button:hover {
 } */
 
 .hidden {
-  display: none !important;
+  /* display: none !important; */
   opacity: 0;
-  transition: opacity 2s ease;
+  transition: opacity 200ms ease;
 }
 
 .invisible {

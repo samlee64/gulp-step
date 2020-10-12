@@ -2,6 +2,7 @@
   width: 550px;
   height: 100vh;
   position: absolute;
+  top: 0;
   right: 0;
   /* padding: 50px 60px 0 60px; */
   /* left: 50%; */
@@ -10,7 +11,7 @@
   backdrop-filter: var(--blur);
   /* border-radius: 1rem 1rem 0 0; */
   overflow-y: scroll;
-  transition: opacity var(--hover);
+  transition: all 500ms ease-in;
   z-index: 1;
 }
 
@@ -20,18 +21,56 @@
   margin: 50px 60px 0 60px;
 }
 
+.section {
+  margin-bottom: 6rem;
+}
+
 #modal-x {
-  position: absolute;
+  position: sticky;
   top: 20px;
-  right: 1.5rem;
+  /* right: 2rem; */
+  left: calc(100% - 2rem);
+  transform: translateX(-50%);
 }
 
 #cv {
   width: 100%;
-  height: 200px;
+  height: 300px;
   /* object-fit: contain; */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: left;
   background-image: url(./assets/jelly.jpg);
+}
+
+/* .slide-enter {
+  top: 100vh;
+}
+
+.slide-enter-active {
+  top: 0;
+  transition: all 500ms;
+}
+
+.slide-exit {
+  top: 0;
+}
+
+.slide-exit-active {
+  top: 100vh;
+  transition: all 500ms;
+} */
+
+.invisible-modal {
+  /* display: none; */
+  /* visibility: hidden; */
+  opacity: 0;
+  /* top: 100vh; */
+  /* height: 0 !important; */
+  /* transform: translateY(100vh); */
+  right: 100vw;
+  width: 0 !important;
+  transform: translateX(100vw);
+  /* transition: all 2s; */
+  /* transition: opacity var(--hover), visibility 0s; */
 }

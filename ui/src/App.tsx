@@ -1,6 +1,7 @@
 import React from 'react';
 // import { connect } from 'react-redux'
 import './App.css';
+import './fonts.css';
 import SplashModal from './components/SplashModal';
 import Menu from './components/Menu';
 import InfoModal from './components/InfoModal';
