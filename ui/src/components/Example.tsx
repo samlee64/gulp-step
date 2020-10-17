@@ -1,14 +1,14 @@
-import React from "react"
+import React from "react";
 
-type Props = {}
+type Props = {};
 
-type State = {}
+type State = {};
 
-export class ExampleClass extends React.Component<Props, State> {
+export class Example extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
 
-    this.state = {}
+    this.state = {};
   }
 
   render() {
