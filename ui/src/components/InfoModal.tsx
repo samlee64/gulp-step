@@ -1,6 +1,6 @@
 import React from "react"
 // import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import CSSTransition from 'react-transition-group/CSSTransition'
+// import CSSTransition from 'react-transition-group/CSSTransition'
 import { store } from '../index'
 import { toggleInfo } from '../actions'
 import '../InfoModal.css'

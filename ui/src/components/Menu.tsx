@@ -100,31 +100,41 @@ class Menu extends React.Component<Props, State> {
       <div id="menu-bar" className={this.state.visible ? '' : 'hidden'}>
         <div id="controls">
           <button id="play-button" className="icon-button" onClick={this.handlePlay}>
-            {/* {this.state.playing ? pauseIcon : playIcon} */}
-            <svg id="pause-icon" className={`icon-button play-icon ${this.state.playing ? '' : 'hidden'}`} width="18.1px" height="22px" viewBox="0 0 18.1 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* <svg id="pause-icon" className={`icon-button play-icon ${this.state.playing ? '' : 'hidden'}`} width="18.1px" height="22px" viewBox="0 0 18.1 22" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="5" height="22" rx="2" fill="white" />
               <rect x="12" width="5" height="22" rx="2" fill="white" />
+            </svg> */}
+
+            <svg id="pause-icon" className={`icon-button play-icon ${this.state.playing ? '' : 'hidden'}`} width="14.9px" height="19.3px" viewBox="0 0 14.9 19.3" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.8,0h0.9c1,0,1.8,0.8,1.8,1.8v15.8c0,1-0.8,1.8-1.8,1.8H1.8c-1,0-1.8-0.8-1.8-1.8V1.8C0,0.8,0.8,0,1.8,0z" fill="white" />
+              <path d="M12.3,0h0.9c1,0,1.8,0.8,1.8,1.8v15.8c0,1-0.8,1.8-1.8,1.8h-0.9c-1,0-1.8-0.8-1.8-1.8V1.8
+		C10.5,0.8,11.3,0,12.3,0z" fill="white" />
             </svg>
-            <svg id="play-icon" className={`icon-button play-icon ${this.state.playing ? 'hidden' : ''}`} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="18.1px" height="20.6px" viewBox="0 0 18.1 20.6">
-              <path fill="white" d="M17.6,9.5L1.4,0.1C0.8-0.2,0,0.2,0,0.9v18.8c0,0.7,0.8,1.2,1.4,0.8l16.2-9.4C18.3,10.8,18.3,9.9,17.6,9.5z" />
+
+            {/* <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="14.5px" height="16.4px" viewBox="0 0 14.5 16.4">
+              <path d="M2,0h1c1.1,0,2,0.7,2,1.5V15c0,0.8-0.9,1.5-2,1.5H2c-1.1,0-2-0.7-2-1.5V1.5C0,0.7,0.9,0,2,0z" fill="white" />
+              <path d="M11.5,0h1c1.1,0,2,0.7,2,1.5V15c0,0.8-0.9,1.5-2,1.5h-1c-1.1,0-2-0.7-2-1.5V1.5C9.5,0.7,10.4,0,11.5,0z" fill="white" />
+            </svg> */}
+            <svg id="play-icon" className={`icon-button play-icon ${this.state.playing ? 'hidden' : ''}`} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="15px" height="17px" viewBox="0 0 15 17">
+              <path fill="white" d="M14.5,7.8L1.2,0.1C0.7-0.2,0,0.2,0,0.7v15.5c0,0.6,0.7,1,1.2,0.7l13.4-7.8C15.1,8.9,15.1,8.1,14.5,7.8z" />
             </svg>
           </button>
           {/* <div id="volume-placeholder"> */}
           <div id="volume-wrapper" onMouseEnter={this.handleSlider} onMouseLeave={this.handleSlider}>
             <button id="mute-button" className="icon-button" onClick={this.handleMute}>
-              {/* {(this.state.muted || this.state.setVolume == 0) ? mutedIcon : unmutedIcon} */}
-              <svg id="muted-icon" className={`icon-button mute-icon ${this.state.muted ? '' : 'hidden'}`} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28.9px" height="30.9px" viewBox="0 0 28.9 30.9">
-                <path d="M9.7,20.8H4.2c-0.7,0-1.3-0.5-1.3-1.2v-7.7c0-0.7,0.6-1.2,1.3-1.2h0.3l16.3,16v3c0,1.1-1.4,1.6-2.2,0.8
-      L9.7,20.8z M20.9,22.5V1.2c0-1.1-1.4-1.6-2.2-0.8L9.2,10.7H9L20.9,22.5z" fill="white" />
-                <path d="M27.4,28.6c-0.4,0-0.8-0.1-1-0.4L0.4,2.5C-0.1,2-0.1,1,0.4,0.4c0.6-0.6,1.5-0.6,2.1,0L28.5,26
-      	c0.6,0.6,0.6,1.5,0,2.1C28.2,28.4,27.8,28.6,27.4,28.6z" fill="white" />
+              <svg id="muted-icon" className={`icon-button mute-icon ${this.state.muted ? '' : 'hidden'}`} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="23.1px" height="24.7px" viewBox="0 0 23.1 24.7">
+                <path d="M7.7,16.6H3.3c-0.6,0-1-0.4-1-1V9.5c0-0.6,0.5-1,1-1h0.2l13,12.8v2.4c0,0.9-1.1,1.3-1.8,0.6L7.7,16.6z M16.7,18V1
+	c0-0.9-1.1-1.3-1.8-0.6L7.3,8.6H7.2L16.7,18z" fill="white" />
+                <path d="M21.9,22.9c-0.3,0-0.6-0.1-0.8-0.3L0.3,2c-0.4-0.4-0.4-1.2,0-1.7c0.5-0.5,1.2-0.5,1.7,0l20.8,20.4c0.5,0.5,0.5,1.2,0,1.7
+		C22.5,22.7,22.2,22.9,21.9,22.9z" fill="white" />
               </svg>
-              <svg id="unmuted-icon" className={`icon-button mute-icon ${this.state.muted ? 'hidden' : ''}`} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28.9px" height="30.9px" viewBox="0 0 28.9 30.9">
-                <path d="M20.9,22.5V1.2c0-1.1-1.4-1.6-2.2-0.8L9.2,10.7H9H4.5H4.2c-0.7,0-1.3,0.5-1.3,1.2v7.7c0,0.7,0.6,1.2,1.3,1.2
-		h5.5l9,9.8c0.8,0.8,2.2,0.3,2.2-0.8L20.9,22.5z" fill="white" />
-                <path d="M25,22.3c-0.4,0-0.8-0.2-1-0.5c-0.5-0.6-0.4-1.4,0.2-1.9c1.4-1.1,2.1-2.8,2.1-4.5s-0.8-3.4-2.1-4.5
-		C23.6,10.4,23.6,9.6,24,9c0.5-0.6,1.3-0.6,1.9-0.2c1.9,1.6,3,4,3,6.5s-1.1,4.9-3.1,6.6C25.6,22.2,25.3,22.3,25,22.3z" fill="white" />
-                <rect width="28.9" height="30.9" fill="none" />
+              <svg id="unmuted-icon" className={`icon-button mute-icon ${this.state.muted ? 'hidden' : ''}`} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="23.4px" height="25px" viewBox="0 0 23.4 25" >
+                <path d="M16.8,18.1v-17c0-0.9-1.1-1.3-1.8-0.6L7.5,8.7H7.3H3.7H3.5c-0.6,0-1,0.4-1,1v6.1c0,0.6,0.5,1,1,1h4.4l7.2,7.8
+		c0.6,0.6,1.8,0.2,1.8-0.6L16.8,18.1z" fill="white" />
+                <path d="M20.1,17.9c-0.3,0-0.6-0.2-0.8-0.4c-0.4-0.5-0.3-1.1,0.2-1.5c1.1-0.9,1.7-2.2,1.7-3.6s-0.6-2.7-1.7-3.6
+		c-0.5-0.4-0.5-1-0.2-1.5c0.4-0.5,1-0.5,1.5-0.2c1.5,1.3,2.4,3.2,2.4,5.2s-0.9,3.9-2.5,5.3C20.6,17.9,20.3,17.9,20.1,17.9z" fill="white" />
+                <rect x="0.1" y="0.1" width="23.1" height="24.7" fill="none" />
+                {/* <rect x="0.1" y="0.1" class="st1" width="23.1" height="24.7"/> */}
               </svg>
             </button>
             <input ref={this.sliderRef} id="volume-slider" name="volume-slider" type="range" min="0" max="1" defaultValue={this.state.setVolume} step="0.01"
@@ -140,9 +150,11 @@ class Menu extends React.Component<Props, State> {
           <button className="button" onClick={this.handleScene('CoralReef')}>coral reef</button>
         </div>
         <button id="info" className={`icon-button ${this.state.infoShown ? 'hidden' : ''}`} onClick={this.handleInfo}>
-          <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="17.4018" cy="16.5982" r="15.0982" stroke="white" strokeWidth="3" />
-            <path d="M17.3705 7.69543C17.8392 7.69543 18.2377 7.8634 18.5658 8.19934C18.9017 8.52747 19.0697 8.9259 19.0697 9.39465C19.0697 9.8634 18.9017 10.2657 18.5658 10.6017C18.2377 10.9298 17.8392 11.0939 17.3705 11.0939C16.9017 11.0939 16.4994 10.9298 16.1635 10.6017C15.8353 10.2657 15.6713 9.8634 15.6713 9.39465C15.6713 8.9259 15.8353 8.52747 16.1635 8.19934C16.4994 7.8634 16.9017 7.69543 17.3705 7.69543ZM15.8588 25.1095V14.9611H14.2533V12.5587H18.8236V25.1095H15.8588Z" fill="white" />
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24.2px" height="24.2px" viewBox="0 0 24.2 24.2">
+            <path d="M12.1,2c5.6,0,10.1,4.5,10.1,10.1s-4.5,10.1-10.1,10.1S2,17.6,2,12.1S6.5,2,12.1,2 M12.1,0C5.4,0,0,5.4,0,12.1
+		s5.4,12.1,12.1,12.1s12.1-5.4,12.1-12.1S18.7,0,12.1,0L12.1,0z" fill="white" />
+            <path d="M12.1,5c0.4,0,0.7,0.1,1,0.4c0.3,0.3,0.4,0.6,0.4,1S13.3,7,13,7.3c-0.3,0.3-0.6,0.4-1,0.4c-0.4,0-0.7-0.1-1-0.4
+	c-0.3-0.3-0.4-0.6-0.4-1s0.1-0.7,0.4-1C11.4,5.1,11.7,5,12.1,5z M10.8,18.9v-8.1H9.6V8.8h3.7v10H10.8z" fill="white" />
           </svg>
         </button>
       </div >

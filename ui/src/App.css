@@ -39,7 +39,7 @@ h1 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: 4rem;
-  line-height: 4.625rem;
+  line-height: 5rem;
 }
 
 h2 {
@@ -53,7 +53,7 @@ h2 {
 p {
   font-weight: normal;
   font-size: 1.3rem;
-  line-height: 2rem;
+  line-height: 2.25rem;
 }
 
 .logo {
