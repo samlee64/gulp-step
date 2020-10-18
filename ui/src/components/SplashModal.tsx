@@ -1,49 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 // import { connect } from 'react-redux'
 import { store } from '../index'
 import { changeToView, toggleMute } from '../actions'
 import '../SplashModal.css';
 
-type Props = {};
+const SplashModal = () => {
+  const [visible, setVisible] = useState(true);
 
-type State = {
-  visible: boolean;
-};
+  store.subscribe(() => {
+    // this.setState({ visible: store.getState().view === 'Splash' })
+    setVisible(store.getState().view === 'Splash');
+  })
 
-class SplashModal extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props)
-    this.state = {
-      visible: true
-    }
-
-    store.subscribe(() => {
-      this.setState({ visible: store.getState().view === 'Splash' })
-    })
-  }
-
-  enterMain = () => {
+  const enterMain = () => {
     store.dispatch(changeToView('Main')) // change store's view value to 'Main'
     store.dispatch(toggleMute()) // unmute video
     // TODO: start music composition, unless music started on mount
   }
 
-  render() {
-    return (
-      <div id="splash-modal" className={this.state.visible ? '' : 'invisible'}>
-        <div id="splash-content">
-          <h1>Generative music powered by machine learning and marine life</h1>
-          <p>Generative music powered by machine learning and marine life. Generative music powered by machine learning and marine life.</p>
-          <button id="enter" className="button button-fill" onClick={this.enterMain}>Enter</button>
-        </div>
+  return (
+    <div id="splash-modal" className={visible ? '' : 'invisible'}>
+      <div id="splash-content">
+        <h1>Generative music powered by machine learning and marine life</h1>
+        <p>Generative music powered by machine learning and marine life. Generative music powered by machine learning and marine life.</p>
+        <button id="enter" className="button button-fill" onClick={enterMain}>Enter</button>
       </div>
-    )
-  }
+    </div>
+  )
 }
-
-// export default connect(
-//   null,
-//   { changeToView },
-// )(SplashModal)
 
 export default SplashModal
