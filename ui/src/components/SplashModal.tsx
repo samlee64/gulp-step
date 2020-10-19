@@ -5,7 +5,7 @@ import { changeToView, toggleMute } from '../actions'
 import '../SplashModal.css';
 
 const SplashModal = () => {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(store.getState().view === 'Splash');
 
   store.subscribe(() => {
     // this.setState({ visible: store.getState().view === 'Splash' })

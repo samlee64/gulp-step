@@ -5,12 +5,6 @@ import { store } from '../index'
 import { toggleInfo } from '../actions'
 import '../InfoModal.css'
 
-type Props = {};
-
-type State = {
-  visible: boolean;
-};
-
 const InfoModal = () => {
   const [visible, setVisible] = useState(false);
 

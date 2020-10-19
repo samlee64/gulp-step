@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useEffect, useRef } from "react"
 // import { connect } from 'react-redux'
 import { store } from '../index'
 import { toggleInfo, changeToScene, toggleMute } from '../actions'
@@ -10,19 +10,20 @@ interface MenuProps {
   playCb: () => void;
   pauseCb: () => void;
   volumeCb: (val: number) => void;
+  scenesInfo: { [key: string]: any }
 }
 
 const Menu = (props: MenuProps) => {
   const sliderRef = useRef<HTMLInputElement>(null);
-  // sliderRef: React.RefObject<HTMLInputElement>;
-  // this.sliderRef = React.createRef();
+  const sceneButtonsRef = useRef<HTMLDivElement>(null);
 
-  const [visible, setVisible] = useState(false);
+  // TODO: should these be initialized here or in store?
+  const [visible, setVisible] = useState(store.getState().view === 'Main');
   const [playing, setPlaying] = useState(true);
   const [stateVolume, setStateVolume] = useState(0.66);
-  const [muted, setMuted] = useState(true);
+  const [muted, setMuted] = useState(store.getState().muted);
   const [showSlider, setShowSlider] = useState(false);
-  const [infoShown, setInfoShown] = useState(false);
+  const [infoShown, setInfoShown] = useState(store.getState().infoShown);
 
   store.subscribe(() => {
     setVisible(store.getState().view === 'Main');
@@ -30,12 +31,23 @@ const Menu = (props: MenuProps) => {
     setInfoShown(store.getState().infoShown);
   })
 
+  // on mount add button fill to default scene button
+  useEffect(() => {
+    let storeScene = store.getState().scene;
+    if (sceneButtonsRef.current != null) {
+      const children = sceneButtonsRef.current.children;
+      for (let i = 0; i < children.length; i++) {
+        if (children[i].id == storeScene) children[i].classList.add('button-fill')
+      }
+    }
+  }, []);
 
   const handleScene = (scene: string) => (event: any) => {
     store.dispatch(changeToScene(scene))
     event.target.parentNode.childNodes.forEach(
-      (btn: { classList: { remove: (arg0: string) => any; }; }) => btn.classList.remove("button-fill"))
-    event.target.classList.add('button-fill')
+      (btn: { classList: { remove: (arg0: string) => any; }; }) => btn.classList.remove('button-fill')
+    )
+    event.target.classList.add('button-fill');
     setPlaying(true);
   }
 
@@ -107,10 +119,13 @@ const Menu = (props: MenuProps) => {
           ></input>
         </div>
       </div>
-      <div id="scene-buttons">
-        <button className="button button-fill" onClick={handleScene('MoonJellies')}>moon jellies</button>
+      <div ref={sceneButtonsRef} id="scene-buttons">
+        {/* <button className="button" onClick={handleScene('MoonJellies')}>moon jellies</button>
         <button className="button" onClick={handleScene('OpenSea')}>open sea</button>
-        <button className="button" onClick={handleScene('CoralReef')}>coral reef</button>
+        <button className="button" onClick={handleScene('CoralReef')}>coral reef</button> */}
+        {Object.keys(props.scenesInfo).map(key =>
+          <button key={key} id={key} className="button" onClick={handleScene(key)}>{props.scenesInfo[key].label}</button>
+        )}
       </div>
       <button id="info" className={`icon-button ${infoShown ? 'hidden' : ''}`} onClick={handleInfo}>
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24.2px" height="24.2px" viewBox="0 0 24.2 24.2">

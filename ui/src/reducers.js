@@ -2,7 +2,6 @@ import { CHANGE_TO_VIEW, CHANGE_TO_SCENE, TOGGLE_INFO, TOGGLE_PLAY, CHANGE_VOLUM
 
 const initialState = {
     view: 'Splash',
-    // scene: { name: 'MoonJellies', link: './jelly.mp4' },
     scene: 'MoonJellies',
     infoShown: false,
     // playing: true,

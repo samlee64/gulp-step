@@ -11,10 +11,22 @@ const jellyVid = require('./assets/jelly.mp4');
 const openSeaVid = require('./assets/opensea.mp4');
 const reefVid = require('./assets/reef.mp4');
 
-const bgDict: { [key: string]: any } = {
-  'MoonJellies': jellyVid,
-  'OpenSea': openSeaVid,
-  'CoralReef': reefVid
+const scenesInfo: { [key: string]: any } = {
+  'MoonJellies': {
+    // name: 'MoonJellies',
+    src: jellyVid,
+    label: 'moon jellies'
+  },
+  'OpenSea': {
+    // name: 'OpenSea',
+    src: openSeaVid,
+    label: 'open sea'
+  },
+  'CoralReef': {
+    // name: 'CoralReef',
+    src: reefVid,
+    label: 'coral reef'
+  }
 }
 
 // const colorThief = new ColorThief();
@@ -32,14 +44,19 @@ const bgDict: { [key: string]: any } = {
 const App = () => {
   const vidRef = useRef<HTMLVideoElement>(null);
 
-  const [video, setVideo] = useState({ name: 'MoonJellies', src: jellyVid });
-  const [muted, setMuted] = useState(true);
+  // set default video state based on store value
+  const [video, setVideo] = useState({
+    name: store.getState().scene,
+    src: scenesInfo[store.getState().scene].src,
+    label: scenesInfo[store.getState().scene].label
+  });
+  const [muted, setMuted] = useState(store.getState().muted);
 
   store.subscribe(() => {
-    let sceneName = store.getState().scene;
     setVideo({
-      name: sceneName,
-      src: bgDict[sceneName]
+      name: store.getState().scene,
+      src: scenesInfo[store.getState().scene].src,
+      label: scenesInfo[store.getState().scene].label
     });
     setMuted(store.getState().muted);
   })
@@ -72,6 +89,7 @@ const App = () => {
         playCb={playVideo.bind(this)}
         pauseCb={pauseVideo.bind(this)}
         volumeCb={adjVolume.bind(this)}
+        scenesInfo={scenesInfo}
       />
       <InfoModal />
       <video
