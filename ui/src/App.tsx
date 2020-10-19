@@ -65,7 +65,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <>
       <div className="logo">GlubStep</div>
       <SplashModal />
       <Menu
@@ -84,7 +84,7 @@ const App = () => {
         src={video.src}
         onClick={exitInfo}>
       </video>
-    </div>
+    </>
   )
 }
 

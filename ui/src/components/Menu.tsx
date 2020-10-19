@@ -19,7 +19,7 @@ const Menu = (props: MenuProps) => {
 
   const [visible, setVisible] = useState(false);
   const [playing, setPlaying] = useState(true);
-  const [volume, setVolume] = useState(0.66);
+  const [stateVolume, setStateVolume] = useState(0.66);
   const [muted, setMuted] = useState(true);
   const [showSlider, setShowSlider] = useState(false);
   const [infoShown, setInfoShown] = useState(false);
@@ -53,8 +53,8 @@ const Menu = (props: MenuProps) => {
   const handleMute = () => {
     // this.setState({ muted: !this.state.muted });
     store.dispatch(toggleMute());
-    var val = muted ? volume : 0; // clicking sound icon sets slider value to 0
-    if (sliderRef.current != null) sliderRef.current.value = val.toString();  // change slider value
+    var val = muted ? stateVolume : 0; // clicking sound icon sets (future) slider value to 0
+    if (sliderRef.current != null) sliderRef.current.value = val.toString();  // actually set slider value
     // store.dispatch(changeVolume(val));
   }
 
@@ -62,7 +62,7 @@ const Menu = (props: MenuProps) => {
     // store.dispatch(changeVolume(event.target.value)); // change store's volume value
     if (muted) store.dispatch(toggleMute()); // if muted, unmute when you adjust slider
     props.volumeCb(event.target.value);  // call adjust volume function via props from App
-    setVolume(event.target.value); // store volume when you manually adjust slider (or when it changes at all?); used to mute icon when vol == 0
+    setStateVolume(event.target.value); // store volume in state when you manually adjust slider
   }
 
   const handleSlider = () => {
@@ -85,30 +85,27 @@ const Menu = (props: MenuProps) => {
             <path fill="white" d="M14.5,7.8L1.2,0.1C0.7-0.2,0,0.2,0,0.7v15.5c0,0.6,0.7,1,1.2,0.7l13.4-7.8C15.1,8.9,15.1,8.1,14.5,7.8z" />
           </svg>
         </button>
-        {/* <div id="volume-placeholder"> */}
         <div id="volume-wrapper" onMouseEnter={handleSlider} onMouseLeave={handleSlider}>
           <button id="mute-button" className="icon-button" onClick={handleMute}>
-            <svg id="muted-icon" className={`icon-button mute-icon ${muted ? '' : 'hidden'}`} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="23.1px" height="24.7px" viewBox="0 0 23.1 24.7">
+            <svg id="muted-icon" className={`icon-button mute-icon ${muted || stateVolume == 0 ? '' : 'hidden'}`} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="23.1px" height="24.7px" viewBox="0 0 23.1 24.7">
               <path d="M7.7,16.6H3.3c-0.6,0-1-0.4-1-1V9.5c0-0.6,0.5-1,1-1h0.2l13,12.8v2.4c0,0.9-1.1,1.3-1.8,0.6L7.7,16.6z M16.7,18V1
 	c0-0.9-1.1-1.3-1.8-0.6L7.3,8.6H7.2L16.7,18z" fill="white" />
               <path d="M21.9,22.9c-0.3,0-0.6-0.1-0.8-0.3L0.3,2c-0.4-0.4-0.4-1.2,0-1.7c0.5-0.5,1.2-0.5,1.7,0l20.8,20.4c0.5,0.5,0.5,1.2,0,1.7
 		C22.5,22.7,22.2,22.9,21.9,22.9z" fill="white" />
             </svg>
-            <svg id="unmuted-icon" className={`icon-button mute-icon ${muted ? 'hidden' : ''}`} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="23.4px" height="25px" viewBox="0 0 23.4 25" >
+            <svg id="unmuted-icon" className={`icon-button mute-icon ${muted || stateVolume == 0 ? 'hidden' : ''}`} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="23.4px" height="25px" viewBox="0 0 23.4 25" >
               <path d="M16.8,18.1v-17c0-0.9-1.1-1.3-1.8-0.6L7.5,8.7H7.3H3.7H3.5c-0.6,0-1,0.4-1,1v6.1c0,0.6,0.5,1,1,1h4.4l7.2,7.8
 		c0.6,0.6,1.8,0.2,1.8-0.6L16.8,18.1z" fill="white" />
               <path d="M20.1,17.9c-0.3,0-0.6-0.2-0.8-0.4c-0.4-0.5-0.3-1.1,0.2-1.5c1.1-0.9,1.7-2.2,1.7-3.6s-0.6-2.7-1.7-3.6
 		c-0.5-0.4-0.5-1-0.2-1.5c0.4-0.5,1-0.5,1.5-0.2c1.5,1.3,2.4,3.2,2.4,5.2s-0.9,3.9-2.5,5.3C20.6,17.9,20.3,17.9,20.1,17.9z" fill="white" />
               <rect x="0.1" y="0.1" width="23.1" height="24.7" fill="none" />
-              {/* <rect x="0.1" y="0.1" class="st1" width="23.1" height="24.7"/> */}
             </svg>
           </button>
-          <input ref={sliderRef} id="volume-slider" name="volume-slider" type="range" min="0" max="1" defaultValue={volume} step="0.01"
+          <input ref={sliderRef} id="volume-slider" name="volume-slider" type="range" min="0" max="1" defaultValue={stateVolume} step="0.01"
             className={`${showSlider ? '' : 'transparent'}`}
             onChange={handleVolume}
           ></input>
         </div>
-        {/* </div> */}
       </div>
       <div id="scene-buttons">
         <button className="button button-fill" onClick={handleScene('MoonJellies')}>moon jellies</button>
