@@ -80,15 +80,14 @@ button {
 }
 
 .button {
-  /* border: 2px solid var(--blue); */
-  /* border: solid 2px transparent; */
-  box-shadow: inset 0px 0px 0px 2px var(--blue);
+  /* border: 2px solid rgba(255, 255, 255, 0.2); */
+  box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.3);
   box-sizing: border-box;
   border-radius: 2rem;
   padding: 0.5rem 1.5rem 0.55rem;
   position: relative;
   background: transparent;
-  transition: var(--hover);
+  transition: all var(--hover);
   /* background-clip: padding-box;
   border-image-source: linear-gradient(to bottom right, rgb(10, 21, 163), var(--blue));
   border-image-slice: 1; */
@@ -118,18 +117,19 @@ button {
 
 .button:hover {
   /* border: 2px solid var(--blue-transparent); */
-  box-shadow: inset 0px 0px 0px 2px var(--blue-transparent);
+  /* box-shadow: inset 0px 0px 0px 2px var(--blue-transparent); */
   opacity: var(--transparent);
-  /* background */
   transition: all var(--hover);
 }
 
 .button-fill {
   /* background: var(--blue); */
-  background: linear-gradient(to bottom right, var(--blue) 40%, var(--turquoise) 100%);
+  /* background: linear-gradient(to bottom right, var(--blue) 40%, var(--turquoise) 100%); */
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px) saturate(110%) brightness(150%);
   border: none;
   box-shadow: none;
-  transition: opacity var(--hover);
+  transition: all var(--hover);
   opacity: 1;
   /* background: linear-gradient(to bottom right, rgb(20, 31, 182), var(--blue)); */
   /* border: transparent; */
@@ -140,7 +140,7 @@ button {
   /* background: var(--blue-transparent); */
   /* background: linear-gradient(to bottom right, var(--blue-transparent) 40%, rgba(64, 224, 208, 0.5) 100%); */
   box-shadow: none;
-  transition: opacity var(--hover);
+  transition: all var(--hover);
   opacity: var(--transparent);
   /* border: 2px solid var(--blue-transparent); */
 }
@@ -162,7 +162,7 @@ button:hover {
 .hidden {
   /* display: none !important; */
   opacity: 0;
-  transition: opacity 200ms ease;
+  transition: all var(--hover);
 }
 
 .invisible {

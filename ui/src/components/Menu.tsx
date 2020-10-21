@@ -37,7 +37,7 @@ const Menu = (props: MenuProps) => {
     if (sceneButtonsRef.current != null) {
       const children = sceneButtonsRef.current.children;
       for (let i = 0; i < children.length; i++) {
-        if (children[i].id == storeScene) children[i].classList.add('button-fill')
+        if (children[i].id == storeScene) children[i].classList.add('button-fill');
       }
     }
   }, []);
