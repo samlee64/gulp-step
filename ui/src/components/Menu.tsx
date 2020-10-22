@@ -37,7 +37,7 @@ const Menu = (props: MenuProps) => {
     if (sceneButtonsRef.current != null) {
       const children = sceneButtonsRef.current.children;
       for (let i = 0; i < children.length; i++) {
-        if (children[i].id == storeScene) children[i].classList.add('button-fill');
+        if (children[i].id == storeScene) children[i].classList.add('label-button-fill');
       }
     }
   }, []);
@@ -45,9 +45,9 @@ const Menu = (props: MenuProps) => {
   const handleScene = (scene: string) => (event: any) => {
     store.dispatch(changeToScene(scene))
     event.target.parentNode.childNodes.forEach(
-      (btn: { classList: { remove: (arg0: string) => any; }; }) => btn.classList.remove('button-fill')
+      (btn: { classList: { remove: (arg0: string) => any; }; }) => btn.classList.remove('label-button-fill')
     )
-    event.target.classList.add('button-fill');
+    event.target.classList.add('label-button-fill');
     setPlaying(true);
   }
 
@@ -124,7 +124,7 @@ const Menu = (props: MenuProps) => {
         <button className="button" onClick={handleScene('OpenSea')}>open sea</button>
         <button className="button" onClick={handleScene('CoralReef')}>coral reef</button> */}
         {Object.keys(props.scenesInfo).map(key =>
-          <button key={key} id={key} className="button" onClick={handleScene(key)}>{props.scenesInfo[key].label}</button>
+          <button key={key} id={key} className="label-button" onClick={handleScene(key)}>{props.scenesInfo[key].label}</button>
         )}
       </div>
       <button id="info" className={`icon-button ${infoShown ? 'hidden' : ''}`} onClick={handleInfo}>

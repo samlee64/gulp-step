@@ -23,7 +23,7 @@ const SplashModal = () => {
       <div id="splash-content">
         <h1>Generative music powered by machine learning and marine life</h1>
         <p>Generative music powered by machine learning and marine life. Generative music powered by machine learning and marine life.</p>
-        <button id="enter" className="button button-fill" onClick={enterMain}>Enter</button>
+        <button id="enter" className="label-button label-button-fill" onClick={enterMain}>Enter</button>
       </div>
     </div>
   )

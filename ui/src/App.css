@@ -79,7 +79,7 @@ button {
   /* width: min-content; */
 }
 
-.button {
+.label-button {
   /* border: 2px solid rgba(255, 255, 255, 0.2); */
   box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.3);
   box-sizing: border-box;
@@ -115,14 +115,15 @@ button {
   background: linear-gradient(to bottom right, rgb(10, 21, 163), var(--blue));
 } */
 
-.button:hover {
+.label-button:hover {
   /* border: 2px solid var(--blue-transparent); */
   /* box-shadow: inset 0px 0px 0px 2px var(--blue-transparent); */
-  opacity: var(--transparent);
+  box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.15);
+  /* opacity: var(--transparent); */
   transition: all var(--hover);
 }
 
-.button-fill {
+.label-button-fill {
   /* background: var(--blue); */
   /* background: linear-gradient(to bottom right, var(--blue) 40%, var(--turquoise) 100%); */
   background: rgba(255, 255, 255, 0.2);
@@ -136,12 +137,14 @@ button {
   /* border: 2px solid var(--blue); */
 }
 
-.button-fill:hover {
+.label-button-fill:hover {
   /* background: var(--blue-transparent); */
   /* background: linear-gradient(to bottom right, var(--blue-transparent) 40%, rgba(64, 224, 208, 0.5) 100%); */
+  background: rgba(255, 255, 255, 0.1);
+  /* backdrop-filter: blur(20px) saturate(100%) brightness(150%); */
   box-shadow: none;
   transition: all var(--hover);
-  opacity: var(--transparent);
+  /* opacity: var(--transparent); */
   /* border: 2px solid var(--blue-transparent); */
 }
 
