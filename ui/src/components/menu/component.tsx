@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
-import { toggleInfo, changeToScene, toggleMute } from '../actions';
-import '../Menu.css';
+import { toggleInfo, changeToScene, toggleMute } from '../../state/actions';
+import '../css/Menu.css';
 
 const playIcon = require('../assets/play.svg');
 const pauseIcon = require('../assets/pause.svg');

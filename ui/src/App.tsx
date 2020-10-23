@@ -1,11 +1,15 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
-import { toggleInfo } from './actions';
-import './App.css';
-import './fonts.css';
-import SplashModal from './components/SplashModal';
-import Menu from './components/Menu';
-import InfoModal from './components/InfoModal';
+import { toggleInfo } from './state/actions';
+import './css/App.css';
+import './css/fonts.css';
+
+import {
+  SplashModal,
+  Menu,
+  InfoModal
+} from './components';
+
 const jellyVid = require('./assets/jelly.mp4');
 const openSeaVid = require('./assets/opensea.mp4');
 const reefVid = require('./assets/reef.mp4');

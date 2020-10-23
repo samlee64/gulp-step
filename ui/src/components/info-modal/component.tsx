@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { toggleInfo } from '../actions';
+import { toggleInfo } from '../../state/actions';
 // import { CSSTransition, TransitionGroup } from 'react-transition-group';
 // import CSSTransition from 'react-transition-group/CSSTransition'
-import '../InfoModal.css';
+import '../css/InfoModal.css';
 
 const xIcon = require('../assets/x.svg');
 
