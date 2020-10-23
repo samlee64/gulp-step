@@ -1,29 +1,29 @@
-export const CHANGE_TO_VIEW = 'CHANGE_TO_VIEW'
-export const CHANGE_TO_SCENE = 'CHANGE_TO_SCENE'
-export const TOGGLE_INFO = 'TOGGLE_INFO'
-// export const TOGGLE_PLAY = 'TOGGLE_PLAY'
-// export const CHANGE_VOLUME = 'CHANGE_VOLUME'
-export const TOGGLE_MUTE = 'TOGGLE_MUTE'
+export const ActionTypes = {
+  CHANGE_TO_VIEW: 'CHANGE_TO_VIEW',
+  CHANGE_TO_SCENE: 'CHANGE_TO_SCENE',
+  TOGGLE_INFO: 'TOGGLE_INFO',
+  // TOGGLE_PLAY: 'TOGGLE_PLAY',
+  // CHANGE_VOLUME: 'CHANGE_VOLUME',
+  TOGGLE_MUTE: 'TOGGLE_MUTE'
+};
 
 
 export function changeToView(view) {
-  return {
-    type: CHANGE_TO_VIEW,
-    view
-  }
+  return (dispatch) => {
+    dispatch({ type: ActionTypes.CHANGE_TO_VIEW, payload: view });
+  };
 }
 
 export function changeToScene(scene) {
-  return {
-    type: CHANGE_TO_SCENE,
-    scene
-  }
+  return (dispatch) => {
+    dispatch({ type: ActionTypes.CHANGE_TO_SCENE, payload: scene });
+  };
 }
 
 export function toggleInfo() {
-  return {
-    type: TOGGLE_INFO
-  }
+  return (dispatch) => {
+    dispatch({ type: ActionTypes.TOGGLE_INFO });
+  };
 }
 
 // export function toggleVideo() {
@@ -40,7 +40,7 @@ export function toggleInfo() {
 // }
 
 export function toggleMute() {
-  return {
-    type: TOGGLE_MUTE
-  }
+  return (dispatch) => {
+    dispatch({ type: ActionTypes.TOGGLE_MUTE });
+  };
 }

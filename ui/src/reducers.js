@@ -1,4 +1,4 @@
-import { CHANGE_TO_VIEW, CHANGE_TO_SCENE, TOGGLE_INFO, TOGGLE_PLAY, CHANGE_VOLUME, TOGGLE_MUTE } from './actions'
+import { ActionTypes } from './actions';
 
 const initialState = {
     view: 'Splash',
@@ -11,31 +11,23 @@ const initialState = {
 
 function reducer(state = initialState, action) {
     switch (action.type) {
-        case CHANGE_TO_VIEW:
-            return Object.assign({}, state, {
-                view: action.view
-            })
-        case CHANGE_TO_SCENE:
-            return Object.assign({}, state, {
-                scene: action.scene
-            })
-        case TOGGLE_INFO:
-            return Object.assign({}, state, {
-                infoShown: !state.infoShown
-            })
-        // case TOGGLE_PLAY:
+        case ActionTypes.CHANGE_TO_VIEW:
+            return { ...state, view: action.payload }
+        case ActionTypes.CHANGE_TO_SCENE:
+            return { ...state, scene: action.payload }
+        case ActionTypes.TOGGLE_INFO:
+            return { ...state, infoShown: !state.infoShown }
+        // case ActionTypes.TOGGLE_PLAY:
         //     return Object.assign({}, state, {
         //         playing: !state.playing
         //     })
-        // case CHANGE_VOLUME:
+        // case ActionTypes.CHANGE_VOLUME:
         //     console.log('volume changed to', action.val)
         //     return Object.assign({}, state, {
         //         storedVolume: action.val
         //     })
-        case TOGGLE_MUTE:
-            return Object.assign({}, state, {
-                muted: !state.muted
-            })
+        case ActionTypes.TOGGLE_MUTE:
+            return { ...state, muted: !state.muted }
         default:
             return state
     }

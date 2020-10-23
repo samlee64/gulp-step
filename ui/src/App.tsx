@@ -1,97 +1,83 @@
-import React, { useState, useRef } from 'react';
-// import { connect } from 'react-redux'
+import React, { useRef } from 'react';
+import { connect } from 'react-redux';
+import { toggleInfo } from './actions';
 import './App.css';
 import './fonts.css';
 import SplashModal from './components/SplashModal';
 import Menu from './components/Menu';
 import InfoModal from './components/InfoModal';
-import { store } from './index';
-import { toggleInfo } from './actions';
 const jellyVid = require('./assets/jelly.mp4');
 const openSeaVid = require('./assets/opensea.mp4');
 const reefVid = require('./assets/reef.mp4');
 
 const scenesInfo: { [key: string]: any } = {
   'MoonJellies': {
-    // name: 'MoonJellies',
     src: jellyVid,
     label: 'moon jellies'
   },
   'OpenSea': {
-    // name: 'OpenSea',
     src: openSeaVid,
     label: 'open sea'
   },
   'CoralReef': {
-    // name: 'CoralReef',
     src: reefVid,
     label: 'coral reef'
   }
 }
 
-// const colorThief = new ColorThief();
-// const img = document.querySelector('img');
+interface AppProps {
+  view: string;
+  scene: string;
+  muted: boolean;
+  infoShown: boolean;
+  toggleInfo: Function;
+}
 
-// // Make sure image is finished loading
-// if (img.complete) {
-//   colorThief.getColor(img);
-// } else {
-//   image.addEventListener('load', function () {
-//     colorThief.getColor(img);
-//   });
-// }
+const App = (props: AppProps) => {
+  const {
+    scene,
+    muted,
+    infoShown
+  } = props;
 
-const App = () => {
   const vidRef = useRef<HTMLVideoElement>(null);
 
-  // set default video state based on store value
-  const [video, setVideo] = useState({
-    name: store.getState().scene,
-    src: scenesInfo[store.getState().scene].src,
-    label: scenesInfo[store.getState().scene].label
-  });
-  const [muted, setMuted] = useState(store.getState().muted);
-
-  store.subscribe(() => {
-    setVideo({
-      name: store.getState().scene,
-      src: scenesInfo[store.getState().scene].src,
-      label: scenesInfo[store.getState().scene].label
-    });
-    setMuted(store.getState().muted);
-  })
+  const video = {
+    name: scene,
+    ...scenesInfo[scene]
+  }
 
   const exitInfo = () => {
-    if (store.getState().infoShown) {
-      store.dispatch(toggleInfo())
+    if (infoShown) {
+      props.toggleInfo();
     }
   }
 
   const playVideo = () => {
-    if (vidRef.current != null) vidRef.current.play();
+    if (vidRef.current) vidRef.current.play();
     // TODO: tell music to generate
   }
 
   const pauseVideo = () => {
-    if (vidRef.current != null) vidRef.current.pause();
+    if (vidRef.current) vidRef.current.pause();
     // TODO: tell music to pause generating
   }
 
   const adjVolume = (val: number) => {
-    if (vidRef.current != null) vidRef.current.volume = val;
+    if (vidRef.current) vidRef.current.volume = val;
   }
 
   return (
     <>
       <div className="logo">GlubStep</div>
-      <SplashModal />
+      <SplashModal visible={props.view != 'Main'} />
       <Menu
         playCb={playVideo.bind(this)}
         pauseCb={pauseVideo.bind(this)}
         volumeCb={adjVolume.bind(this)}
         scenesInfo={scenesInfo}
       />
-      <InfoModal />
+      <InfoModal visible={props.infoShown} />
       <video
         ref={vidRef}
         className="video-bg"
@@ -106,4 +92,35 @@ const App = () => {
   )
 }
 
-export default App;
+// Pull specific variables out of global state
+// Accessible via props
+const mapStateToProps = (state: { view: string, scene: string, muted: boolean, infoShown: boolean }) => {
+  const {
+    view,
+    scene,
+    muted,
+    infoShown
+  } = state;
+
+  return {
+    view,
+    scene,
+    muted,
+    infoShown
+  };
+};
+
+// Create functions that dispatch actions
+// Accessible via props
+const mapDispatchToProps = (dispatch: Function) => {
+  return {
+    toggleInfo: () => { dispatch(toggleInfo()); }
+  };
+};
+
+// Connect function uses props to pass reference to state variables in mapStateToProps and when invoked calls function to dispatch action
+// ~subscribe to store
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);
