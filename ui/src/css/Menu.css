@@ -7,8 +7,8 @@
 
   background: linear-gradient(to top, 
     rgba(0, 0, 0, 0.4) 0%, 
-    rgba(0, 0, 0, 0.2) 50%, 
-    rgba(0, 0, 0, 0.05) 75%, 
+    rgba(0, 0, 0, 0.1) 50%, 
+    rgba(0, 0, 0, 0.03) 75%, 
     rgba(0, 0, 0, 0) 100%);
   /* background: linear-gradient(to top, black 0%, rgba(0, 0, 0, 0.738) 19%, rgba(0, 0, 0, 0.541) 34%, rgba(0, 0, 0, 0.382) 47%, rgba(0, 0, 0, 0.278) 56.5%, rgba(0, 0, 0, 0.194) 65%, rgba(0, 0, 0, 0.126) 73%, rgba(0, 0, 0, 0.075) 80.2%, rgba(0, 0, 0, 0.042) 86.1%, rgba(0, 0, 0, 0.021) 91%, rgba(0, 0, 0, 0.008) 95.2%, rgba(0, 0, 0, 0.002) 98.2%, transparent 100%); */
 
@@ -20,7 +20,7 @@
   justify-content: space-between;
   align-items: center;
   
-  transition: opacity var(--hover);
+  transition: all var(--hover);
   z-index: 100;
   pointer-events: none;
 }
@@ -33,7 +33,7 @@
   pointer-events: all;
 }
 
-#menu-bar .button {
+#menu-bar .label-button {
   margin-right: 1.5rem;
 }
 
@@ -58,7 +58,7 @@
 /* #menu-bar .icon-button { */
 #controls>* {
   margin: 0 2.8rem 0 0;
-  /* transform: scale(0.8); */
+  transform: scale(0.8);
   transform-origin: bottom;
   /* height: 1rem;
   padding-bottom: 100%;
@@ -125,12 +125,12 @@
   -webkit-appearance: none;
   /* width: 150px; */
   width: 100px;
-  height: 9px;
+  height: 8px;
   border: none;
   border-radius: 20px;
   outline: none;
   /* margin: -75px 0 0 -35px; */
-  transform: translate(-35px, 50px) rotate(-90deg);
+  transform: translate(-40px, 50px) rotate(-90deg);
   position: absolute;
   top: 0;
   left: 0;
@@ -159,8 +159,8 @@
   border: none;
   /* height: 16px;
   width: 16px; */
-  height: 9px;
-  width: 9px;
+  height: 8px;
+  width: 8px;
   border-radius: 50px;
   background: var(--blue);
   box-shadow: -85px 0 0 80px var(--blue);
