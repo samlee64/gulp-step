@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { toggleInfo, changeToScene, toggleMute } from '../../state/actions';
-import '../css/Menu.css';
+import '../../css/Menu.css';
 
-const playIcon = require('../assets/play.svg');
-const pauseIcon = require('../assets/pause.svg');
-const mutedIcon = require('../assets/muted.svg');
-const unmutedIcon = require('../assets/unmuted.svg');
-const infoIcon = require('../assets/info.svg');
+const playIcon = require('../../assets/play.svg');
+const pauseIcon = require('../../assets/pause.svg');
+const mutedIcon = require('../../assets/muted.svg');
+const unmutedIcon = require('../../assets/unmuted.svg');
+const infoIcon = require('../../assets/info.svg');
 
 interface MenuProps {
   view: string;
@@ -88,21 +88,13 @@ const Menu = (props: MenuProps) => {
     <div id="menu-bar" className={view == 'Main' ? '' : 'hidden'}>
       <div id="controls">
         <button id="play-button" className="icon-button" onClick={handlePlay}>
-          <div id="pause-icon" className={`icon-button play-icon ${playing ? '' : 'hidden'}`}>
-            {pauseIcon}
-          </div>
-          <div id="play-icon" className={`icon-button play-icon ${playing ? 'hidden' : ''}`}>
-            {playIcon}
-          </div>
+          <img src={pauseIcon} id="pause-icon" className={`icon-button play-icon ${playing ? '' : 'hidden'}`} width="15px" />
+          <img src={playIcon} id="play-icon" className={`icon-button play-icon ${playing ? 'hidden' : ''}`} width="15px" />
         </button>
         <div id="volume-wrapper" onMouseEnter={handleSlider} onMouseLeave={handleSlider}>
           <button id="mute-button" className="icon-button" onClick={handleMute}>
-            <div id="muted-icon" className={`icon-button mute-icon ${muted || stateVolume == 0 ? '' : 'hidden'}`}>
-              {mutedIcon}
-            </div>
-            <div id="unmuted-icon" className={`icon-button mute-icon ${muted || stateVolume == 0 ? 'hidden' : ''}`}>
-              {unmutedIcon}
-            </div>
+            <img src={mutedIcon} id="muted-icon" className={`icon-button mute-icon ${muted || stateVolume == 0 ? '' : 'hidden'}`} width="24px" />
+            <img src={unmutedIcon} id="unmuted-icon" className={`icon-button mute-icon ${muted || stateVolume == 0 ? 'hidden' : ''}`} width="24px" />
           </button>
           <input ref={sliderRef} id="volume-slider" name="volume-slider" type="range" min="0" max="1" defaultValue={stateVolume} step="0.01"
             className={`${showSlider ? '' : 'transparent'}`}
@@ -116,9 +108,7 @@ const Menu = (props: MenuProps) => {
         )}
       </div>
       <button id="info" className={`icon-button ${infoShown ? 'hidden' : ''}`} onClick={handleInfo}>
-        <div>
-          {infoIcon}
-        </div>
+        <img src={infoIcon} width="22px" />
       </button>
     </div >
   )
@@ -143,7 +133,7 @@ const mapStateToProps = (state: { view: string, scene: string, muted: boolean, i
 const mapDispatchToProps = (dispatch: Function) => {
   return {
     toggleInfo: () => { dispatch(toggleInfo()); },
-    changeToScene: () => { dispatch(changeToScene()); },
+    changeToScene: (scene: string) => { dispatch(changeToScene(scene)); },
     toggleMute: () => { dispatch(toggleMute()); }
   };
 };

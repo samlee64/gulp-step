@@ -40,7 +40,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: left;
-  background-image: url(./assets/jelly.jpg);
+  background-image: url(./../assets/jelly.jpg);
 }
 
 /* .slide-enter {

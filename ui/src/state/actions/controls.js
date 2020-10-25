@@ -8,21 +8,23 @@ export const ActionTypes = {
 };
 
 
-export function changeToView(view) {
-  return (dispatch) => {
-    dispatch({ type: ActionTypes.CHANGE_TO_VIEW, payload: view });
+export const changeToView = (view) => {
+  return {
+    type: ActionTypes.CHANGE_TO_VIEW,
+    payload: view
   };
 }
 
-export function changeToScene(scene) {
-  return (dispatch) => {
-    dispatch({ type: ActionTypes.CHANGE_TO_SCENE, payload: scene });
+export const changeToScene = (scene) => {
+  return {
+    type: ActionTypes.CHANGE_TO_SCENE,
+    payload: scene
   };
 }
 
-export function toggleInfo() {
-  return (dispatch) => {
-    dispatch({ type: ActionTypes.TOGGLE_INFO });
+export const toggleInfo = () => {
+  return {
+    type: ActionTypes.TOGGLE_INFO
   };
 }
 
@@ -39,8 +41,8 @@ export function toggleInfo() {
 //   }
 // }
 
-export function toggleMute() {
-  return (dispatch) => {
-    dispatch({ type: ActionTypes.TOGGLE_MUTE });
+export const toggleMute = () => {
+  return {
+    type: ActionTypes.TOGGLE_MUTE
   };
 }

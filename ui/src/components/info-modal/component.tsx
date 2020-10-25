@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { toggleInfo } from '../../state/actions';
 // import { CSSTransition, TransitionGroup } from 'react-transition-group';
 // import CSSTransition from 'react-transition-group/CSSTransition'
-import '../css/InfoModal.css';
+import '../../css/InfoModal.css';
 
-const xIcon = require('../assets/x.svg');
+const xIcon = require('../../assets/x.svg');
 
 const InfoModal = (props: { visible: boolean, toggleInfo: Function }) => {
   const showInfo = () => {
@@ -24,7 +24,7 @@ const InfoModal = (props: { visible: boolean, toggleInfo: Function }) => {
         > */}
       <div id="info-modal" className={props.visible ? '' : 'invisible-modal'}>
         <button id="modal-x" className="icon-button" onClick={showInfo}>
-          {xIcon}
+          <img src={xIcon} width="15px" />
         </button>
         <div id="info-content">
           <div className="section">

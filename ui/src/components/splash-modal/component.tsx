@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { changeToView, toggleMute } from '../../state/actions';
-import '../css/SplashModal.css';
+import '../../css/SplashModal.css';
 
 interface SplashProps {
   visible: boolean;
