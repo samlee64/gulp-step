@@ -88,13 +88,13 @@ const Menu = (props: MenuProps) => {
     <div id="menu-bar" className={view == 'Main' ? '' : 'hidden'}>
       <div id="controls">
         <button id="play-button" className="icon-button" onClick={handlePlay}>
-          <img src={pauseIcon} id="pause-icon" className={`icon-button play-icon ${playing ? '' : 'hidden'}`} width="15px" />
-          <img src={playIcon} id="play-icon" className={`icon-button play-icon ${playing ? 'hidden' : ''}`} width="15px" />
+          <img src={pauseIcon} id="pause-icon" className={`icon-button play-icon ${playing ? '' : 'hidden'}`} width="12px" />
+          <img src={playIcon} id="play-icon" className={`icon-button play-icon ${playing ? 'hidden' : ''}`} width="12px" />
         </button>
         <div id="volume-wrapper" onMouseEnter={handleSlider} onMouseLeave={handleSlider}>
           <button id="mute-button" className="icon-button" onClick={handleMute}>
-            <img src={mutedIcon} id="muted-icon" className={`icon-button mute-icon ${muted || stateVolume == 0 ? '' : 'hidden'}`} width="24px" />
-            <img src={unmutedIcon} id="unmuted-icon" className={`icon-button mute-icon ${muted || stateVolume == 0 ? 'hidden' : ''}`} width="24px" />
+            <img src={mutedIcon} id="muted-icon" className={`icon-button mute-icon ${muted || stateVolume == 0 ? '' : 'hidden'}`} width="20px" />
+            <img src={unmutedIcon} id="unmuted-icon" className={`icon-button mute-icon ${muted || stateVolume == 0 ? 'hidden' : ''}`} width="20px" />
           </button>
           <input ref={sliderRef} id="volume-slider" name="volume-slider" type="range" min="0" max="1" defaultValue={stateVolume} step="0.01"
             className={`${showSlider ? '' : 'transparent'}`}
@@ -108,7 +108,7 @@ const Menu = (props: MenuProps) => {
         )}
       </div>
       <button id="info" className={`icon-button ${infoShown ? 'hidden' : ''}`} onClick={handleInfo}>
-        <img src={infoIcon} width="22px" />
+        <img src={infoIcon} width="23px" />
       </button>
     </div >
   )

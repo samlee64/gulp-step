@@ -58,8 +58,8 @@
 /* #menu-bar .icon-button { */
 #controls>* {
   margin: 0 2.8rem 0 0;
-  transform: scale(0.8);
-  transform-origin: bottom;
+  /* transform: scale(0.8); */
+  /* transform-origin: bottom; */
   /* height: 1rem;
   padding-bottom: 100%;
   position: relative; */
@@ -75,7 +75,7 @@
 
 #play-button {
   height: 30px;
-  margin-bottom: 3px;
+  margin-bottom: 0px;
   position: relative;
 }
 
@@ -105,6 +105,7 @@
   height: 160px;
   position: relative;
   bottom: 0;
+  margin-bottom: -3px;
 }
 
 #mute-button {
@@ -169,6 +170,6 @@
 
 #info {
   position: absolute;
-  /* bottom: 1rem; */
+  bottom: 1.2rem;
   right: 1.5rem;
 }
